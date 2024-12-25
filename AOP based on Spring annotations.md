@@ -95,7 +95,7 @@ public class LoggingAspect {
 
 
 
-### 1. 切点表达式的基本结构
+### 5. 切点表达式的基本结构
 
 切点表达式是AOP中非常重要的部分，它用于指定在哪些方法上应用通知。切点表达式的基本结构如下：
 
@@ -110,7 +110,7 @@ execution(modifiers-pattern? return-type-pattern declaring-type-pattern? method-
 - **param-pattern**：方法的参数列表（如`(..)`表示任意参数）。
 - **throws-pattern**：方法抛出的异常类型，可选。
 
-### 2. 示例代码中的切点表达式
+### 6. 示例代码中的切点表达式
 
 让我们回到示例代码中的切点表达式：
 
@@ -119,7 +119,7 @@ execution(modifiers-pattern? return-type-pattern declaring-type-pattern? method-
 public void serviceMethods() {}
 ```
 
-#### 2.1 分解切点表达式
+#### 6.1 分解切点表达式
 
 - **execution**：表示这是一个执行切点，即在方法执行时触发。
 - **\***：匹配任意返回类型。
@@ -127,7 +127,7 @@ public void serviceMethods() {}
 - **\***：匹配这些类中的所有方法。
 - **(..)**：匹配任意参数列表。
 
-#### 2.2 详细解释
+#### 6.2 详细解释
 
 - **execution**：这个关键字告诉Spring，我们希望在方法执行时应用通知。
 - **\***：这个通配符表示匹配任意返回类型。也就是说，无论方法返回什么类型（`void`、`String`、`int`等），都会被匹配。
@@ -135,11 +135,11 @@ public void serviceMethods() {}
 - **\***：这个通配符表示匹配这些类中的所有方法。也就是说，无论方法名是什么（`save`、`delete`、`findAll`等），都会被匹配。
 - **(..)**：这个部分表示匹配任意参数列表。也就是说，无论方法是否有参数，或者参数是什么类型，都会被匹配。
 
-### 3. 其他常见的切点表达式
+### 7. 其他常见的切点表达式
 
 除了示例中的切点表达式，还有一些常见的切点表达式，你可以根据需要进行调整：
 
-#### 3.1 匹配特定方法
+#### 7.1 匹配特定方法
 
 ```java
 @Pointcut("execution(* com.example.service.UserService.saveUser(..))")
@@ -148,7 +148,7 @@ public void saveUserMethod() {}
 
 这个切点表达式只匹配`UserService`类中的`saveUser`方法。
 
-#### 3.2 匹配特定返回类型
+#### 7.2 匹配特定返回类型
 
 ```java
 @Pointcut("execution(String com.example.service.*.*(..))")
@@ -157,7 +157,7 @@ public void stringReturningMethods() {}
 
 这个切点表达式只匹配返回类型为`String`的方法。
 
-#### 3.3 匹配特定参数
+#### 7.3 匹配特定参数
 
 ```java
 @Pointcut("execution(* com.example.service.*.*(String, int))")
@@ -166,7 +166,7 @@ public void methodsWithStringAndIntParams() {}
 
 这个切点表达式只匹配参数列表为`(String, int)`的方法。
 
-### 4. 类比理解
+### 8. 类比理解
 
 想象一下，你是一个图书管理员，负责管理图书馆中的书籍。切点表达式就像是你用来筛选书籍的规则：
 
@@ -175,13 +175,3 @@ public void methodsWithStringAndIntParams() {}
 - **com.example.service.*.**：你决定只对某个特定书架（如“科幻小说”书架）上的书籍执行操作。
 - **\***：你决定对书架上的所有书籍都执行操作。
 - **(..)**：你决定无论书籍的借阅者是谁，都执行操作。
-
-### 5. 测试理解
-
-为了确保你理解了切点表达式的定义，我来问你几个问题：
-
-1. **如何定义一个切点表达式，只匹配`com.example.controller`包下的所有`public`方法？**
-2. **如何定义一个切点表达式，只匹配返回类型为`void`且参数列表为空的方法？**
-3. **如何定义一个切点表达式，只匹配`com.example.service.UserService`类中的`deleteUser`方法？**
-
-请尝试回答这些问题，如果你有任何疑问，随时告诉我，我会进一步解释。
